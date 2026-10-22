@@ -1,0 +1,25 @@
+/* Procedural city. Independent Voronoi neighborhoods are joined by streets; cars navigate the resulting connected graph.
+ * Page-specific layout and controls; shared theme colors are supplied by /Theme.css.
+ */
+.city-layout { display: grid; grid-template-columns: 300px minmax(0, 1fr); min-height: calc(100vh - 70px); }
+.city-controls { padding: 1.5rem; background: var(--site-surface); border-right: 1px solid var(--site-border); }
+.city-controls h1 { font-size: 1.7rem; }
+.section-label { color: var(--site-accent); text-transform: uppercase; font-size: .75rem; letter-spacing: .1em; }
+.city-controls label { display: block; margin-top: 1rem; }
+.city-controls output { float: right; color: var(--site-accent); }
+.city-controls input[type="range"] { width: 100%; display: block; margin-bottom: 1rem; }
+.city-controls button { margin: 1rem .25rem 0 0; }
+#city-status { margin: 1.5rem 0 .75rem; color: var(--site-accent); }
+#city-view { position: relative; min-height: 65vh; overflow: hidden; }
+#city-view canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+#scene-error { padding: 2rem; }
+/* Stack or resize the project layout on narrower screens. */
+@media (max-width: 700px) { .city-layout { grid-template-columns: 1fr; } .city-controls { border-right: 0; border-bottom: 1px solid var(--site-border); } #city-view { height: 65vh; } }
+
+.district-key { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--site-border); }
+.district-key h2 { font-size: 1rem; }
+#district-legend { list-style: none; margin: .75rem 0; padding: 0; }
+#district-legend li { display: flex; align-items: center; gap: .6rem; margin: .4rem 0; }
+.district-swatch { width: .85rem; height: .85rem; border-radius: 3px; flex-shrink: 0; }
+.district-key p { color: var(--site-muted); font-size: .8rem; }
+.connection-swatch { display: inline-block; width: 1rem; height: 3px; background: #ffdf7c; vertical-align: middle; }

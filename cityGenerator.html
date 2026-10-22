@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- Procedural city. Independent Voronoi neighborhoods are joined by streets; cars navigate the resulting connected graph. -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Generate and explore a procedural 3D city.">
+    <title>cityGenerator — Louis du Beux</title>
+    <link rel="stylesheet" href="/Lib/Bootstrap4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/NavBar.css">
+    <link rel="stylesheet" href="./cityGenerator.css">
+    <link rel="stylesheet" href="/Theme.css?v=2">
+    <script type="importmap">{"imports":{"three":"/Lib/Three/Three.js"}}</script>
+    <script src="/NavBar.js" defer></script>
+    <link rel="canonical" href="https://louisdubeux.com/Projects/cityGenerator/cityGenerator.html">
+</head>
+<body>
+    <!-- Shared navigation is populated by /NavBar.js. -->
+    <div id="nav-placeholder"></div>
+    <main class="city-layout">
+        <section class="city-controls">
+            <p class="section-label">Procedural generation</p>
+            <h1>cityGenerator</h1>
+            <p class="text-muted">Ant colony trails shape the land. Voronoi boundaries generate its streets, while district types repeat across adjoining neighborhoods.</p>
+            <form id="city-form">
+                <label for="seed">City seed</label>
+                <input id="seed" class="form-control" value="Oleg City" maxlength="80" required>
+                <label for="ant-dots">Ant colony dots <output id="ant-dots-value">7</output></label>
+                <input id="ant-dots" type="range" min="3" max="40" step="1" value="7">
+                <label for="size">City size <output id="size-value">12</output></label>
+                <input id="size" type="range" min="4" max="80" value="12">
+                <label for="density">Building density <output id="density-value">80%</output></label>
+                <input id="density" type="range" min="10" max="100" value="80">
+                <label for="height">Maximum height <output id="height-value">24</output></label>
+                <input id="height" type="range" min="4" max="48" value="24">
+                <button class="btn btn-primary" type="submit">Generate city</button>
+                <button id="randomize" class="btn btn-outline-light" type="button">Random seed</button>
+            </form>
+            <section class="district-key" aria-label="District colors">
+                <h2>Districts</h2>
+                <ul id="district-legend"></ul>
+                <p><span class="connection-swatch" aria-hidden="true"></span> Gold lines mark neighborhood boundaries along Voronoi streets. District colors can appear in several places.</p>
+                <p id="district-connections"></p>
+            </section>
+            <p id="city-status" role="status" aria-live="polite"></p>
+            <small class="text-muted">Drag to orbit · Scroll to zoom · Right-drag to pan. On touch screens, drag to orbit and pinch to zoom.</small>
+        </section>
+        <section id="city-view" aria-label="Interactive 3D city"><p id="scene-error" role="alert" hidden></p></section>
+    </main>
+    <!-- Load the project entry module after its controls and view containers exist. -->
+    <script type="module" src="./cityGenerator.js"></script>
+</body>
+</html>
